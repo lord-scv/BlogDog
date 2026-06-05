@@ -1,26 +1,81 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-geist-sans), var(--font-inter), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
+  /* Restrict spacing to strict 4px increments only */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+
+  /* Custom design token names */
+  --color-neutral-bg: var(--neutral-bg);
+  --color-neutral-card: var(--neutral-card);
+  --color-neutral-border: var(--neutral-border);
+  --color-neutral-text: var(--neutral-text);
+  --color-neutral-muted: var(--neutral-muted);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-hover: var(--accent-hover);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --neutral-bg: #fafafa; /* Zinc 50 */
+  --neutral-card: #ffffff;
+  --neutral-border: #e4e4e7; /* Zinc 200 */
+  --neutral-text: #09090b; /* Zinc 950 */
+  --neutral-muted: #71717a; /* Zinc 500 */
+  
+  --accent-primary: #4f46e5; /* Indigo 600 */
+  --accent-hover: #4338ca; /* Indigo 700 */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --neutral-bg: #09090b; /* Zinc 950 */
+  --neutral-card: #18181b; /* Zinc 900 */
+  --neutral-border: #27272a; /* Zinc 800 */
+  --neutral-text: #fafafa; /* Zinc 50 */
+  --neutral-muted: #a1a1aa; /* Zinc 400 */
+  
+  --accent-primary: #6366f1; /* Indigo 500 */
+  --accent-hover: #818cf8; /* Indigo 400 */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--neutral-bg);
+  color: var(--neutral-text);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Custom premium reading prose defaults */
+.reading-prose {
+  line-height: 1.75;
+  font-size: 1.125rem; /* 18px */
+}
+
+@media (min-width: 768px) {
+  .reading-prose {
+    font-size: 1.25rem; /* 20px */
+  }
+}
+
+/* Custom scrollbar matching the minimal aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--neutral-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-muted);
 }
